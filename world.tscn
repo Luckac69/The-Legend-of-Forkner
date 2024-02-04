@@ -5,4 +5,4 @@
 [node name="World" type="Node"]
 
 [node name="Main Character" parent="." instance=ExtResource("1_7cnp5")]
-position = Vector2(247, 242)
+position = Vector2(1, 5)

@@ -25,5 +25,9 @@ func _physics_process(delta):
 		velocity.y = ydirection * SPEED
 	else:
 		velocity.y = lerp(velocity.y, 0.0, STOP)
+	
+	
+	#FOR Testin 'n stuff
+	print(position)
 
 	move_and_slide()
