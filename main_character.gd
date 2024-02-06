@@ -17,6 +17,7 @@ func _physics_process(delta):
 
 func _attack(delta):
 	wepon.show()
+	wepon.rotation = get_angle_to(get_global_mouse_position())+90
 	$Wepon/Timer.start()
 	wepon.rotate(5*delta)
 	

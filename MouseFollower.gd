@@ -1,4 +1,4 @@
-extends Node2D
+extends Marker2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -8,8 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	rotate(-10*delta)
-
-
-func _on_timer_timeout():
-	self.hide()
+	rotate(get_angle_to((get_global_mouse_position()))+90)
