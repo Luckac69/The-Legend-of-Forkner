@@ -4,14 +4,27 @@ extends CharacterBody2D
 const SPEED = 300.0
 const STOP = .1
 
+@onready var wepon = $Wepon
+
 
 func _physics_process(delta):
+
+	_movement()
+	
+	if(Input.is_action_just_pressed("Click")):
+		_attack(delta)
 	
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+func _attack(delta):
+	wepon.show()
+	wepon.rotation = get_angle_to(get_global_mouse_position())+90
+	$Wepon/Timer.start()
+	wepon.rotate(5*delta)
 	
-	
+
+
+
+func _movement():
 	# Horizantal
 	var xdirection = Input.get_axis("Left", "Right")
 	if xdirection:
@@ -29,5 +42,4 @@ func _physics_process(delta):
 	
 	#FOR Testin 'n stuff
 	print(position)
-
 	move_and_slide()
