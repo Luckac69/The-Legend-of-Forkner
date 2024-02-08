@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bf5hpd72l42if"]
+[gd_scene load_steps=4 format=3 uid="uid://c6881gt5x3glp"]
 
 [ext_resource type="Texture2D" uid="uid://bkr3olatjek6d" path="res://Untitled.png" id="1_dmm32"]
 [ext_resource type="Script" path="res://sword.gd" id="1_o4al4"]
@@ -13,7 +13,6 @@ script = ExtResource("1_o4al4")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -200)
 rotation = -0.785398
-scale = Vector2(1, 1)
 texture = ExtResource("1_dmm32")
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp74323sagayv"]
+
+[ext_resource type="Texture2D" uid="uid://cmaxqpuwicxnx" path="res://Icon32_no_effect.png" id="1_he5r1"]
+[ext_resource type="Script" path="res://bow.gd" id="1_nyvlq"]
+
+[node name="BowBase" type="Node2D"]
+script = ExtResource("1_nyvlq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_he5r1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
