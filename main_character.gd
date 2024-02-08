@@ -33,6 +33,8 @@ func _physics_process(delta):
 	if(Input.is_action_just_pressed("Click") && isBow == true):
 		_bow(delta)
 
+
+#####MOVE TO BOW OBJECT
 func _bow(delta):
 	bow.rotation = get_angle_to(get_global_mouse_position()) + 45
 	bow.show()
