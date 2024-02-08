@@ -28,20 +28,21 @@ func _physics_process(delta):
 			isBow = false
 	
 	if(Input.is_action_just_pressed("Click") && isSword == true):
-		print("sufe")
 		_sword(delta)
 	
 	if(Input.is_action_just_pressed("Click") && isBow == true):
-		print("sugboer")
 		_bow(delta)
 
 func _bow(delta):
-	print("susuy baka")
+	bow.rotation = get_angle_to(get_global_mouse_position()) + 45
 	bow.show()
 	var bullet = bulletPath.instantiate()
 	get_parent().add_child(bullet)
+	bullet.position = $Bow/Marker2D.global_position 
 	
+	bullet.velocity = get_local_mouse_position().normalized()
 	
+	$Bow/Timer.start()
 
 func _sword(delta):
 	sword.show()
@@ -66,5 +67,5 @@ func _movement():
 	else:
 		velocity.y = lerp(velocity.y, 0.0, STOP)
 	
-	
+	print(position)
 	move_and_slide()

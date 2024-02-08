@@ -9,7 +9,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	self.rotation = get_angle_to(get_global_mouse_position())
+	pass
 
 
 
+
+
+func _on_timer_timeout():
+	self.hide() # Replace with function body.
