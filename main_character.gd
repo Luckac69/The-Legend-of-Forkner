@@ -16,20 +16,29 @@ func _physics_process(delta):
 	_movement()
 	
 	if(Input.is_action_just_pressed("sword")):
-		isSword = true
+		if(isSword == false): 
+			isSword = true
+		else:
+			isSword = false
 		
 	if(Input.is_action_just_pressed("bow")):
-		isBow = true
+		if(isBow == false):
+			isBow = true
+		else:
+			isBow = false
 	
-	if(Input.is_action_just_pressed("Click") && isSword):
+	if(Input.is_action_just_pressed("Click") && isSword == true):
+		print("sufe")
 		_sword(delta)
 	
-	if(Input.is_action_just_pressed("Click") && isBow):
+	if(Input.is_action_just_pressed("Click") && isBow == true):
+		print("sugboer")
 		_bow(delta)
 
 func _bow(delta):
+	print("susuy baka")
 	bow.show()
-	var bullet = bulletPath.instance()
+	var bullet = bulletPath.instantiate()
 	get_parent().add_child(bullet)
 	
 	
@@ -58,6 +67,4 @@ func _movement():
 		velocity.y = lerp(velocity.y, 0.0, STOP)
 	
 	
-	#FOR Testin 'n stuff
-	print(position)
 	move_and_slide()
