@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://galxpaqi4ljc"
-path="res://.godot/imported/Sip.png-66fcc5b6040591f5a4eaa717d1de8e17.ctex"
+uid="uid://cmaxqpuwicxnx"
+path="res://.godot/imported/Icon32_no_effect.png-0d1e9846a2a0ad830e99a07d4725af8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sip.png"
-dest_files=["res://.godot/imported/Sip.png-66fcc5b6040591f5a4eaa717d1de8e17.ctex"]
+source_file="res://Sprites/Icon32_no_effect.png"
+dest_files=["res://.godot/imported/Icon32_no_effect.png-0d1e9846a2a0ad830e99a07d4725af8a.ctex"]
 
 [params]
 

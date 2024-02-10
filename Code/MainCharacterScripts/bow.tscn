@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://cp74323sagayv"]
 
-[ext_resource type="Texture2D" uid="uid://cmaxqpuwicxnx" path="res://Icon32_no_effect.png" id="1_he5r1"]
-[ext_resource type="Script" path="res://bow.gd" id="1_nyvlq"]
+[ext_resource type="Script" path="res://Code/MainCharacterScripts/bow.gd" id="1_nyvlq"]
+[ext_resource type="Texture2D" uid="uid://cmaxqpuwicxnx" path="res://Sprites/Icon32_no_effect.png" id="2_jxlx1"]
 
 [node name="BowBase" type="Node2D"]
 script = ExtResource("1_nyvlq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_he5r1")
+texture = ExtResource("2_jxlx1")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25

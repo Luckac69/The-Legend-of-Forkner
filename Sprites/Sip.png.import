@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beyojyolapgw"
-path="res://.godot/imported/116px-Bow_gear.png-276fa006f1d7b9fb86c958f3c99cd730.ctex"
+uid="uid://galxpaqi4ljc"
+path="res://.godot/imported/Sip.png-3bd7b405f8a7a80a5fc5f43b144b5524.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://116px-Bow_gear.png"
-dest_files=["res://.godot/imported/116px-Bow_gear.png-276fa006f1d7b9fb86c958f3c99cd730.ctex"]
+source_file="res://Sprites/Sip.png"
+dest_files=["res://.godot/imported/Sip.png-3bd7b405f8a7a80a5fc5f43b144b5524.ctex"]
 
 [params]
 
