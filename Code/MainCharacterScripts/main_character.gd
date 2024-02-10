@@ -10,7 +10,7 @@ var isBow = false
 @onready var sword = $Sword
 @onready var bow = $Bow
 
-const bulletPath = preload("res://bullet.tscn")
+const bulletPath = preload("res://Code/MainCharacterScripts/bullet.tscn")
 
 func _physics_process(delta):
 	_movement()
