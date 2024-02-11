@@ -1,13 +1,17 @@
-[gd_scene load_steps=43 format=3 uid="uid://vt6e0dykwru1"]
+[gd_scene load_steps=37 format=3 uid="uid://vt6e0dykwru1"]
 
 [ext_resource type="Script" path="res://Code/MainCharacterScripts/main_character.gd" id="1_jql3s"]
 [ext_resource type="Texture2D" uid="uid://bxg7r55x0lw3x" path="res://Sprites/Adventurer_Sprite_Sheet_v1.5.png" id="2_x0pup"]
-[ext_resource type="PackedScene" uid="uid://c6881gt5x3glp" path="res://Code/MainCharacterScripts/sword.tscn" id="3_4ifl2"]
+[ext_resource type="Texture2D" uid="uid://bkr3olatjek6d" path="res://Sprites/Untitled.png" id="3_r1eoc"]
 [ext_resource type="PackedScene" uid="uid://cp74323sagayv" path="res://Code/MainCharacterScripts/bow.tscn" id="4_y88s1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lxwc5"]
 radius = 20.0
 height = 100.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qipko"]
+radius = 1000.0
+height = 25000.0
 
 [sub_resource type="Animation" id="Animation_q7fdo"]
 resource_name = "Die"
@@ -146,48 +150,31 @@ animation = &"Idle"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_tvucw"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_adlfw")
-blend_point_0/pos = Vector2(0.1, -0.5)
+blend_point_0/pos = Vector2(1, -0.7)
 blend_point_1/node = SubResource("AnimationNodeAnimation_gbihl")
-blend_point_1/pos = Vector2(0, 0.6)
+blend_point_1/pos = Vector2(0, 1)
 blend_point_2/node = SubResource("AnimationNodeAnimation_5qfmc")
-blend_point_2/pos = Vector2(-0.2, -0.7)
+blend_point_2/pos = Vector2(-1, 0)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ec8rk"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cuckl"]
-animation = &"SwordSlashDown"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_745bj"]
-animation = &"SwordSlashDown"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7ptpw"]
-animation = &"SwordSlashDown"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_gil0d"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_cuckl")
-blend_point_0/pos = Vector2(-0.3, 0.1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_745bj")
-blend_point_1/pos = Vector2(0.1, 0.4)
-blend_point_2/node = SubResource("AnimationNodeAnimation_7ptpw")
-blend_point_2/pos = Vector2(0.1, -0.6)
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8tnvk"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_58yus"]
 animation = &"SwordSlashUp"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rhhdc"]
-animation = &"SwordSlashUp"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l3vhf"]
+animation = &"SwordSlashDown"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mta23"]
-animation = &"SwordSlashUp"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_spp3x"]
+animation = &"SwordSlashDown"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_jww1t"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_8tnvk")
-blend_point_0/pos = Vector2(-0.1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_rhhdc")
-blend_point_1/pos = Vector2(0.2, 0.2)
-blend_point_2/node = SubResource("AnimationNodeAnimation_mta23")
-blend_point_2/pos = Vector2(0, 0.6)
+blend_point_0/node = SubResource("AnimationNodeAnimation_58yus")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_l3vhf")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_spp3x")
+blend_point_2/pos = Vector2(1, 0)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ewvr0"]
@@ -226,6 +213,7 @@ advance_mode = 2
 advance_condition = &"swing"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xrf33"]
+priority = 2
 switch_mode = 2
 advance_mode = 2
 advance_condition = &"is_moving"
@@ -235,22 +223,10 @@ advance_mode = 2
 advance_condition = &"swing"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dt2su"]
+priority = 2
 switch_mode = 2
 advance_mode = 2
 advance_condition = &"idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_syxaw"]
-advance_mode = 2
-advance_condition = &"swing2"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pqvnn"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_do0mj"]
-advance_mode = 2
-advance_condition = &"is_moving"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vm8g3"]
 states/Die/node = SubResource("AnimationNodeBlendSpace2D_ugggx")
@@ -260,13 +236,11 @@ states/Idle/position = Vector2(386, 130)
 states/Jump/node = SubResource("AnimationNodeBlendSpace2D_ec8rk")
 states/Jump/position = Vector2(554, 143)
 states/Start/position = Vector2(228, 130)
-states/SwordSwingDown/node = SubResource("AnimationNodeBlendSpace2D_gil0d")
-states/SwordSwingDown/position = Vector2(228, -22)
-states/SwordSwingUp/node = SubResource("AnimationNodeBlendSpace2D_jww1t")
-states/SwordSwingUp/position = Vector2(630, -17)
+states/SwordSwing/node = SubResource("AnimationNodeBlendSpace2D_jww1t")
+states/SwordSwing/position = Vector2(722, 11)
 states/Walking/node = SubResource("AnimationNodeBlendSpace2D_3o560")
 states/Walking/position = Vector2(401, 33)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_dmoo8"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_rh320"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_m6ipb"), "Walking", "SwordSwingUp", SubResource("AnimationNodeStateMachineTransition_o80jy"), "SwordSwingUp", "Walking", SubResource("AnimationNodeStateMachineTransition_xrf33"), "Idle", "SwordSwingUp", SubResource("AnimationNodeStateMachineTransition_68kgp"), "SwordSwingUp", "Idle", SubResource("AnimationNodeStateMachineTransition_dt2su"), "SwordSwingUp", "SwordSwingDown", SubResource("AnimationNodeStateMachineTransition_syxaw"), "SwordSwingDown", "Idle", SubResource("AnimationNodeStateMachineTransition_pqvnn"), "SwordSwingDown", "Walking", SubResource("AnimationNodeStateMachineTransition_do0mj")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_dmoo8"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_rh320"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_m6ipb"), "Walking", "SwordSwing", SubResource("AnimationNodeStateMachineTransition_o80jy"), "SwordSwing", "Walking", SubResource("AnimationNodeStateMachineTransition_xrf33"), "Idle", "SwordSwing", SubResource("AnimationNodeStateMachineTransition_68kgp"), "SwordSwing", "Idle", SubResource("AnimationNodeStateMachineTransition_dt2su")]
 graph_offset = Vector2(0, -47.6721)
 
 [node name="Main Character" type="CharacterBody2D"]
@@ -288,9 +262,25 @@ shape = SubResource("CapsuleShape2D_lxwc5")
 scale = Vector2(1.19565, 2.06703)
 position_smoothing_enabled = true
 
-[node name="Sword" parent="." instance=ExtResource("3_4ifl2")]
-position = Vector2(0, 50)
-scale = Vector2(0.5, 0.5)
+[node name="Sword" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="Sword"]
+wait_time = 0.4
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="Sword"]
+scale = Vector2(0.1, 0.1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/Area2D"]
+position = Vector2(0, -2000)
+scale = Vector2(0.1, 0.1)
+shape = SubResource("CapsuleShape2D_qipko")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sword"]
+visible = false
+position = Vector2(0, -200)
+rotation = -0.785398
+texture = ExtResource("3_r1eoc")
 
 [node name="Bow" parent="." instance=ExtResource("4_y88s1")]
 visible = false
@@ -309,10 +299,10 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/idle = false
 parameters/conditions/is_moving = false
 parameters/conditions/swing = false
-parameters/conditions/swing2 = false
 parameters/Die/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(0, 0.00529099)
 parameters/Jump/blend_position = Vector2(0, 0)
-parameters/SwordSwingDown/blend_position = Vector2(0, 0)
-parameters/SwordSwingUp/blend_position = Vector2(0, 0)
+parameters/SwordSwing/blend_position = Vector2(0, -0.00529099)
 parameters/Walking/blend_position = Vector2(0, 0)
+
+[connection signal="timeout" from="Sword/Timer" to="." method="_on_timer_timeout"]
