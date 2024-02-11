@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://vt6e0dykwru1"]
+[gd_scene load_steps=43 format=3 uid="uid://vt6e0dykwru1"]
 
 [ext_resource type="Script" path="res://Code/MainCharacterScripts/main_character.gd" id="1_jql3s"]
 [ext_resource type="Texture2D" uid="uid://bxg7r55x0lw3x" path="res://Sprites/Adventurer_Sprite_Sheet_v1.5.png" id="2_x0pup"]
@@ -137,7 +137,27 @@ _data = {
 "Walking": SubResource("Animation_83k8k")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2hhqu"]
+animation = &"Die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_275sl"]
+animation = &"Die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vntt1"]
+animation = &"Die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t71ay"]
+animation = &"Die"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ugggx"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_2hhqu")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_275sl")
+blend_point_1/pos = Vector2(0, 0.9)
+blend_point_2/node = SubResource("AnimationNodeAnimation_vntt1")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_t71ay")
+blend_point_3/pos = Vector2(0, -0.9)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_adlfw"]
 animation = &"Idle"
@@ -228,20 +248,28 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nxcrt"]
+advance_mode = 2
+advance_condition = &"die"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gppsv"]
+advance_mode = 2
+advance_condition = &"die"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vm8g3"]
 states/Die/node = SubResource("AnimationNodeBlendSpace2D_ugggx")
 states/Die/position = Vector2(784, 100)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_tvucw")
 states/Idle/position = Vector2(386, 130)
 states/Jump/node = SubResource("AnimationNodeBlendSpace2D_ec8rk")
-states/Jump/position = Vector2(554, 143)
+states/Jump/position = Vector2(659, 184)
 states/Start/position = Vector2(228, 130)
 states/SwordSwing/node = SubResource("AnimationNodeBlendSpace2D_jww1t")
 states/SwordSwing/position = Vector2(722, 11)
 states/Walking/node = SubResource("AnimationNodeBlendSpace2D_3o560")
 states/Walking/position = Vector2(401, 33)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_dmoo8"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_rh320"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_m6ipb"), "Walking", "SwordSwing", SubResource("AnimationNodeStateMachineTransition_o80jy"), "SwordSwing", "Walking", SubResource("AnimationNodeStateMachineTransition_xrf33"), "Idle", "SwordSwing", SubResource("AnimationNodeStateMachineTransition_68kgp"), "SwordSwing", "Idle", SubResource("AnimationNodeStateMachineTransition_dt2su")]
-graph_offset = Vector2(0, -47.6721)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_dmoo8"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_rh320"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_m6ipb"), "Walking", "SwordSwing", SubResource("AnimationNodeStateMachineTransition_o80jy"), "SwordSwing", "Walking", SubResource("AnimationNodeStateMachineTransition_xrf33"), "Idle", "SwordSwing", SubResource("AnimationNodeStateMachineTransition_68kgp"), "SwordSwing", "Idle", SubResource("AnimationNodeStateMachineTransition_dt2su"), "Idle", "Die", SubResource("AnimationNodeStateMachineTransition_nxcrt"), "Walking", "Die", SubResource("AnimationNodeStateMachineTransition_gppsv")]
+graph_offset = Vector2(46, -11.6721)
 
 [node name="Main Character" type="CharacterBody2D"]
 script = ExtResource("1_jql3s")
@@ -296,6 +324,7 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_vm8g3")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/die = false
 parameters/conditions/idle = false
 parameters/conditions/is_moving = false
 parameters/conditions/swing = false

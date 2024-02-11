@@ -4,6 +4,8 @@ extends CharacterBody2D
 const SPEED = 30.0
 const STOP = .1
 
+var health = 100
+
 var isSword = false
 var isBow = false
 var isSwordSwing = false
@@ -26,6 +28,7 @@ func _ready():
 	animation_tree.active = true
 
 func _physics_process(delta):
+	
 	_movement()
 	
 	update_animation_parameters()
@@ -37,6 +40,7 @@ func _physics_process(delta):
 			isSword = false
 		
 	if(Input.is_action_just_pressed("bow")):
+		health = 0
 		if(isBow == false):
 			isBow = true
 		else:
@@ -57,7 +61,7 @@ func _physics_process(delta):
 	#print(isSwordSwing)
 	#print(animation_tree["parameters/conditions/swing2"])
 	#print(animation_tree["parameters/conditions/swing"])
-	print(direction)
+	print(health)
 
 func _bow(delta):
 	bow.rotation = get_angle_to(get_global_mouse_position()) + 45
@@ -86,6 +90,11 @@ func _on_timer_timeout():
 
 func update_animation_parameters():
 	
+	
+	if(health <= 0):
+		animation_tree["parameters/conditions/die"] = true
+	else:
+		animation_tree["parameters/conditions/die"] = false
 	
 	if(Input.is_action_just_pressed("Click") && isSword):
 		animation_tree["parameters/conditions/swing"] = true
