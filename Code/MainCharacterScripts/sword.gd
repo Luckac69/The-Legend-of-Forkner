@@ -8,7 +8,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	rotate(-10*delta)
+	rotate(10*delta)
 
 
 func _on_timer_timeout():

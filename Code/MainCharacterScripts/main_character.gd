@@ -6,6 +6,7 @@ const STOP = .1
 
 var isSword = false
 var isBow = false
+var direction : Vector2 = Vector2.ZERO 
 
 @onready var sword = $Sword
 @onready var bow = $Bow
@@ -56,7 +57,7 @@ func _bow(delta):
 
 func _sword(delta):
 	sword.show()
-	sword.rotation = get_angle_to(get_global_mouse_position())+90
+	sword.rotation = get_angle_to(get_global_mouse_position())
 	$Sword/Timer.start()
 	sword.rotate(5*delta)
 
@@ -73,25 +74,27 @@ func update_animation_parameters():
 	else:
 		animation_tree["parameters/conditions/swing"] = false
 	
+	if(Input.is_action_just_pressed("Click") && animation_tree["parameters/conditions/swing"]):
+		animation_tree["parameters/conditions/swing2"] = true
+	else:
+		animation_tree["parameters/conditions/swing2"] = false
+	
+	
 
 func _movement():
-	# Horizantal
-	var xdirection = Input.get_axis("Left", "Right")
-	if xdirection:
-		velocity.x = xdirection * SPEED
-		if(xdirection>0):
+	
+	direction = Input.get_vector("Left","Right","Up","Down").normalized()
+	if direction:
+		velocity = direction * SPEED
+		if(direction.x>0):
 			$Sprite2D.flip_h = false
-		if(xdirection<0):
+		if(direction.x<0):
 			$Sprite2D.flip_h = true
 	else:
-		velocity.x = lerp(velocity.x, 0.0, STOP)
+		velocity = Vector2(lerp(velocity.x, 0.0, STOP),lerp(velocity.y,0.0,STOP))
 	
-	# Virtical
-	var ydirection = Input.get_axis("Up", "Down")
-	if ydirection:
-		velocity.y = ydirection * SPEED
-	else:
-		velocity.y = lerp(velocity.y, 0.0, STOP)
+	####################STOP IF VELOCITY IS TOO LOW
+	if velocity.length() < 10:
+		velocity = Vector2.ZERO
 	
-	print(velocity)
 	move_and_slide()
