@@ -28,11 +28,17 @@ func _ready():
 	animation_tree.active = true
 
 func _physics_process(delta):
+	# If not dead, then move, else, you are dead
+	if(health):
+		_movement()
+	else:
+		direction = Vector2.ZERO
 	
-	_movement()
-	
+	## doing the animations
 	update_animation_parameters()
-	###
+	
+	
+	## inputs
 	if(Input.is_action_just_pressed("sword")):
 		if(isSword == false): 
 			isSword = true
@@ -46,15 +52,16 @@ func _physics_process(delta):
 		else:
 			isBow = false
 	
-	
+	#bow
 	if(Input.is_action_just_pressed("Click") && isBow == true):
 		_bow(delta)
-	
-	if(isSwordSwing):
-		sword.rotate(5*delta)
-	
+		
+	#sword
 	if(Input.is_action_just_pressed("Click") && isSword == true):
 		_sword(delta)
+	if(isSwordSwing):
+		sword.rotate(5*delta)
+		
 	
 	
 	
@@ -133,3 +140,6 @@ func _movement():
 	move_and_slide()
 
 
+##FOR ATTACKING
+func player():
+	pass

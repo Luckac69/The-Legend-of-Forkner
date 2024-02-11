@@ -122,15 +122,14 @@ scale = Vector2(5, 5)
 script = ExtResource("1_vx14w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_3inra")
 
 [node name="HitBox" type="Area2D" parent="."]
-scale = Vector2(1, 1)
+position = Vector2(0, -0.2)
 
 [node name="HitBoxColilsion" type="CollisionShape2D" parent="HitBox"]
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_ue61m")
+debug_color = Color(0.698039, 0.133333, 0.313726, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_tnp4d")
@@ -148,3 +147,6 @@ anim_player = NodePath("../AnimationPlayer")
 libraries = {
 "": SubResource("AnimationLibrary_r1ykp")
 }
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_exited" from="HitBox" to="." method="_on_hit_box_body_exited"]
