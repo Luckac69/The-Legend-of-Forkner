@@ -68,7 +68,7 @@ func _physics_process(delta):
 	#print(isSwordSwing)
 	#print(animation_tree["parameters/conditions/swing2"])
 	#print(animation_tree["parameters/conditions/swing"])
-	print(health)
+	#print(health)
 
 func _bow(delta):
 	bow.rotation = get_angle_to(get_global_mouse_position()) + 45
@@ -86,7 +86,7 @@ func _sword(delta):
 	isSwordSwing = true
 	sword.show()
 	sword.rotation = get_angle_to(get_global_mouse_position())
-	$Sword/Timer.start()
+	$Sword/SwordTimer.start()
 	sword.rotate(5*delta)
 	
 
@@ -139,7 +139,5 @@ func _movement():
 	
 	move_and_slide()
 
-
-##FOR ATTACKING
 func player():
 	pass

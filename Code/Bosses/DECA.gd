@@ -6,8 +6,7 @@ const SPEED = 300.0
 var health = 1000
 
 
-var playerInAttackRange = false
-var playerAttackCooldown = false
+var DamageCooldown = false
 
 
 func _physics_process(delta):
@@ -16,15 +15,6 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-	print(health)
-
-
-
-
-
-
-
-
 
 
 
@@ -32,22 +22,35 @@ func update_animation_parameters():
 	pass
 
 
+func deal_with_damange(damage):
+	health -= damage
 
 
 
-func _on_hit_box_body_entered(body):
-	if body.has_method("player"):
-		playerInAttackRange = true
+func _on_hit_box_area_entered(area):
+	if area.has_method("sword"):
+		deal_with_damange(30)
+		print("enter")
 
-
-func _on_hit_box_body_exited(body):
-	if body.has_method("player"):
-		playerInAttackRange = false
 
 func attacked():
-	health -= 10
+	if DamageCooldown:
+		DamageCooldown = false
+		health -= 10
+		$attack_cooldown.start()
+		print(health)
+
+func _on_attack_cooldown_timeout():
+	DamageCooldown = true
+
 
 func enemy():
 	pass
+
+
+
+
+
+
 
 
