@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
 
-const SPEED = 30.0
+const SPEED = 300.0
 const STOP = .1
+
+var health = 100
 
 var isSword = false
 var isBow = false
@@ -21,15 +23,23 @@ var direction : Vector2 = Vector2.ZERO
 const bulletPath = preload("res://Code/MainCharacterScripts/bullet.tscn")
 
 func _ready():
+	add_to_group("Player")
 	sword.hide()
 	bow.hide()
 	animation_tree.active = true
 
 func _physics_process(delta):
-	_movement()
+	# If not dead, then move, else, you are dead
+	if(health):
+		_movement()
+	else:
+		direction = Vector2.ZERO
 	
+	## doing the animations
 	update_animation_parameters()
-	###
+	
+	
+	## inputs
 	if(Input.is_action_just_pressed("sword")):
 		if(isSword == false): 
 			isSword = true
@@ -37,27 +47,29 @@ func _physics_process(delta):
 			isSword = false
 		
 	if(Input.is_action_just_pressed("bow")):
+		health = 0
 		if(isBow == false):
 			isBow = true
 		else:
 			isBow = false
 	
-	
+	#bow
 	if(Input.is_action_just_pressed("Click") && isBow == true):
 		_bow(delta)
-	
-	if(isSwordSwing):
-		sword.rotate(5*delta)
-	
+		
+	#sword
 	if(Input.is_action_just_pressed("Click") && isSword == true):
 		_sword(delta)
+	if(isSwordSwing):
+		sword.rotate(5*delta)
+		
 	
 	
 	
 	#print(isSwordSwing)
 	#print(animation_tree["parameters/conditions/swing2"])
 	#print(animation_tree["parameters/conditions/swing"])
-	print(direction)
+	#print(health)
 
 func _bow(delta):
 	bow.rotation = get_angle_to(get_global_mouse_position()) + 45
@@ -75,7 +87,7 @@ func _sword(delta):
 	isSwordSwing = true
 	sword.show()
 	sword.rotation = get_angle_to(get_global_mouse_position())
-	$Sword/Timer.start()
+	$Sword/SwordTimer.start()
 	sword.rotate(5*delta)
 	
 
@@ -86,6 +98,11 @@ func _on_timer_timeout():
 
 func update_animation_parameters():
 	
+	
+	if(health <= 0):
+		animation_tree["parameters/conditions/die"] = true
+	else:
+		animation_tree["parameters/conditions/die"] = false
 	
 	if(Input.is_action_just_pressed("Click") && isSword):
 		animation_tree["parameters/conditions/swing"] = true
@@ -123,4 +140,5 @@ func _movement():
 	
 	move_and_slide()
 
-
+func player():
+	pass

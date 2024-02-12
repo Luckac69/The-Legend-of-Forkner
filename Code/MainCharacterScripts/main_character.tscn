@@ -1,17 +1,22 @@
-[gd_scene load_steps=37 format=3 uid="uid://vt6e0dykwru1"]
+[gd_scene load_steps=45 format=3 uid="uid://vt6e0dykwru1"]
 
 [ext_resource type="Script" path="res://Code/MainCharacterScripts/main_character.gd" id="1_jql3s"]
 [ext_resource type="Texture2D" uid="uid://bxg7r55x0lw3x" path="res://Sprites/Adventurer_Sprite_Sheet_v1.5.png" id="2_x0pup"]
 [ext_resource type="Texture2D" uid="uid://bkr3olatjek6d" path="res://Sprites/Untitled.png" id="3_r1eoc"]
+[ext_resource type="Script" path="res://Code/MainCharacterScripts/sword.gd" id="4_irhs2"]
 [ext_resource type="PackedScene" uid="uid://cp74323sagayv" path="res://Code/MainCharacterScripts/bow.tscn" id="4_y88s1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lxwc5"]
 radius = 20.0
-height = 100.0
+height = 72.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qipko"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l5rin"]
+radius = 23.0
+height = 74.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4rej0"]
 radius = 1000.0
-height = 25000.0
+height = 10000.0
 
 [sub_resource type="Animation" id="Animation_q7fdo"]
 resource_name = "Die"
@@ -137,7 +142,27 @@ _data = {
 "Walking": SubResource("Animation_83k8k")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2hhqu"]
+animation = &"Die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_275sl"]
+animation = &"Die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vntt1"]
+animation = &"Die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t71ay"]
+animation = &"Die"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ugggx"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_2hhqu")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_275sl")
+blend_point_1/pos = Vector2(0, 0.9)
+blend_point_2/node = SubResource("AnimationNodeAnimation_vntt1")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_t71ay")
+blend_point_3/pos = Vector2(0, -0.9)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_adlfw"]
 animation = &"Idle"
@@ -228,23 +253,42 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nxcrt"]
+advance_mode = 2
+advance_condition = &"die"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gppsv"]
+advance_mode = 2
+advance_condition = &"die"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vm8g3"]
 states/Die/node = SubResource("AnimationNodeBlendSpace2D_ugggx")
 states/Die/position = Vector2(784, 100)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_tvucw")
 states/Idle/position = Vector2(386, 130)
 states/Jump/node = SubResource("AnimationNodeBlendSpace2D_ec8rk")
-states/Jump/position = Vector2(554, 143)
+states/Jump/position = Vector2(659, 184)
 states/Start/position = Vector2(228, 130)
 states/SwordSwing/node = SubResource("AnimationNodeBlendSpace2D_jww1t")
 states/SwordSwing/position = Vector2(722, 11)
 states/Walking/node = SubResource("AnimationNodeBlendSpace2D_3o560")
 states/Walking/position = Vector2(401, 33)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_dmoo8"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_rh320"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_m6ipb"), "Walking", "SwordSwing", SubResource("AnimationNodeStateMachineTransition_o80jy"), "SwordSwing", "Walking", SubResource("AnimationNodeStateMachineTransition_xrf33"), "Idle", "SwordSwing", SubResource("AnimationNodeStateMachineTransition_68kgp"), "SwordSwing", "Idle", SubResource("AnimationNodeStateMachineTransition_dt2su")]
-graph_offset = Vector2(0, -47.6721)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_dmoo8"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_rh320"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_m6ipb"), "Walking", "SwordSwing", SubResource("AnimationNodeStateMachineTransition_o80jy"), "SwordSwing", "Walking", SubResource("AnimationNodeStateMachineTransition_xrf33"), "Idle", "SwordSwing", SubResource("AnimationNodeStateMachineTransition_68kgp"), "SwordSwing", "Idle", SubResource("AnimationNodeStateMachineTransition_dt2su"), "Idle", "Die", SubResource("AnimationNodeStateMachineTransition_nxcrt"), "Walking", "Die", SubResource("AnimationNodeStateMachineTransition_gppsv")]
+graph_offset = Vector2(46, -11.6721)
 
 [node name="Main Character" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_jql3s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("CapsuleShape2D_lxwc5")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="HitBoxColision" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 11)
+shape = SubResource("CapsuleShape2D_l5rin")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(5, 5)
@@ -254,27 +298,19 @@ hframes = 10
 vframes = 6
 frame = 50
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
-shape = SubResource("CapsuleShape2D_lxwc5")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(1.19565, 2.06703)
 position_smoothing_enabled = true
 
-[node name="Sword" type="Node2D" parent="."]
+[node name="Bow" parent="." instance=ExtResource("4_y88s1")]
+visible = false
 
-[node name="Timer" type="Timer" parent="Sword"]
+[node name="Sword" type="Area2D" parent="."]
+script = ExtResource("4_irhs2")
+
+[node name="SwordTimer" type="Timer" parent="Sword"]
 wait_time = 0.4
 one_shot = true
-
-[node name="Area2D" type="Area2D" parent="Sword"]
-scale = Vector2(0.1, 0.1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/Area2D"]
-position = Vector2(0, -2000)
-scale = Vector2(0.1, 0.1)
-shape = SubResource("CapsuleShape2D_qipko")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sword"]
 visible = false
@@ -282,8 +318,11 @@ position = Vector2(0, -200)
 rotation = -0.785398
 texture = ExtResource("3_r1eoc")
 
-[node name="Bow" parent="." instance=ExtResource("4_y88s1")]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
+position = Vector2(0, -100)
+scale = Vector2(0.01, 0.01)
+shape = SubResource("CapsuleShape2D_4rej0")
+debug_color = Color(0.901961, 0.266667, 0.396078, 0.419608)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -296,6 +335,7 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_vm8g3")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/die = false
 parameters/conditions/idle = false
 parameters/conditions/is_moving = false
 parameters/conditions/swing = false
@@ -305,4 +345,4 @@ parameters/Jump/blend_position = Vector2(0, 0)
 parameters/SwordSwing/blend_position = Vector2(0, -0.00529099)
 parameters/Walking/blend_position = Vector2(0, 0)
 
-[connection signal="timeout" from="Sword/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Sword/SwordTimer" to="." method="_on_timer_timeout"]
