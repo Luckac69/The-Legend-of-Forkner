@@ -23,6 +23,7 @@ var direction : Vector2 = Vector2.ZERO
 const bulletPath = preload("res://Code/MainCharacterScripts/bullet.tscn")
 
 func _ready():
+	add_to_group("Player")
 	sword.hide()
 	bow.hide()
 	animation_tree.active = true

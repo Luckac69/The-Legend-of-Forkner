@@ -16,7 +16,7 @@ height = 74.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4rej0"]
 radius = 1000.0
-height = 25000.0
+height = 10000.0
 
 [sub_resource type="Animation" id="Animation_q7fdo"]
 resource_name = "Die"
@@ -277,6 +277,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(46, -11.6721)
 
 [node name="Main Character" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_jql3s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -318,7 +319,7 @@ rotation = -0.785398
 texture = ExtResource("3_r1eoc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
-position = Vector2(0, -200)
+position = Vector2(0, -100)
 scale = Vector2(0.01, 0.01)
 shape = SubResource("CapsuleShape2D_4rej0")
 debug_color = Color(0.901961, 0.266667, 0.396078, 0.419608)

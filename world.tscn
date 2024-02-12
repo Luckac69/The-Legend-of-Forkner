@@ -5,7 +5,7 @@
 
 [node name="World" type="Node"]
 
-[node name="Main Character" parent="." instance=ExtResource("1_7cnp5")]
+[node name="MainCharacter" parent="." instance=ExtResource("1_7cnp5")]
 position = Vector2(1, 5)
 
 [node name="DecaBase" parent="." instance=ExtResource("2_2aldr")]
