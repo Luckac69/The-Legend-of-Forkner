@@ -40,7 +40,7 @@ func calculateDirection():
 	print(((position - position.direction_to(get_parent().get_node("MainCharacter").position)).length()) > 50)
 	if((position - position.direction_to(get_parent().get_node("MainCharacter").position)).length()) > 50 or true:
 		direction = position.direction_to(get_parent().get_node("MainCharacter").position)
-	else:
+	else: pass
 
 
 func update_animation_parameters():
