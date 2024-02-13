@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5s2ob81wdyol"]
+[gd_scene load_steps=4 format=3 uid="uid://b5s2ob81wdyol"]
 
 [ext_resource type="PackedScene" uid="uid://vt6e0dykwru1" path="res://Code/MainCharacterScripts/main_character.tscn" id="1_7cnp5"]
 [ext_resource type="PackedScene" uid="uid://dtolg6hhglcqr" path="res://Code/Bosses/DECA.tscn" id="2_2aldr"]
+[ext_resource type="PackedScene" uid="uid://bqt1yqxol7eo0" path="res://Level.tscn" id="3_hr1wp"]
 
 [node name="World" type="Node"]
 
 [node name="MainCharacter" parent="." instance=ExtResource("1_7cnp5")]
-position = Vector2(1, 5)
+position = Vector2(38, 26)
 
 [node name="DecaBase" parent="." instance=ExtResource("2_2aldr")]
-position = Vector2(260, -52)
+position = Vector2(-144, 374)
+
+[node name="Node2D" parent="." instance=ExtResource("3_hr1wp")]
