@@ -7,12 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://cp74323sagayv" path="res://Code/MainCharacterScripts/bow.tscn" id="4_y88s1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lxwc5"]
-radius = 20.0
-height = 72.0
+radius = 6.0
+height = 18.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l5rin"]
-radius = 23.0
-height = 74.0
+radius = 8.0
+height = 24.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4rej0"]
 radius = 1000.0
@@ -278,20 +278,21 @@ graph_offset = Vector2(46, -11.6721)
 
 [node name="Main Character" type="CharacterBody2D"]
 z_index = 1
+collision_mask = 2
 script = ExtResource("1_jql3s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_lxwc5")
 
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="HitBoxColision" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, 11)
 shape = SubResource("CapsuleShape2D_l5rin")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(5, 5)
+position = Vector2(-5.68434e-14, 0)
+scale = Vector2(0.842742, 0.875)
 texture = ExtResource("2_x0pup")
 flip_h = true
 hframes = 10
@@ -306,6 +307,7 @@ position_smoothing_enabled = true
 visible = false
 
 [node name="Sword" type="Area2D" parent="."]
+position = Vector2(7, 6)
 script = ExtResource("4_irhs2")
 
 [node name="SwordTimer" type="Timer" parent="Sword"]
