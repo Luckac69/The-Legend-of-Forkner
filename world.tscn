@@ -12,7 +12,7 @@ position = Vector2(38, 26)
 
 [node name="DecaBase" parent="." instance=ExtResource("2_2aldr")]
 z_index = 1
-position = Vector2(120, 191)
+position = Vector2(118, 194)
 
 [node name="Node2D" parent="." instance=ExtResource("3_hr1wp")]
 scale = Vector2(5, 5)

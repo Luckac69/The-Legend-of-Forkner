@@ -4,12 +4,12 @@
 [ext_resource type="Script" path="res://Code/Bosses/DECA.gd" id="1_vx14w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3inra"]
-radius = 1.8
-height = 6.8
+radius = 5.0
+height = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ue61m"]
-radius = 2.0
-height = 8.4
+radius = 9.4
+height = 29.2
 
 [sub_resource type="Animation" id="Animation_hnj7i"]
 resource_name = "Die"
@@ -242,8 +242,11 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [node name="DecaBase" type="CharacterBody2D"]
 scale = Vector2(5, 5)
 script = ExtResource("1_vx14w")
+ChaseMode = false
+ReloadMode = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.2, 3.2)
 shape = SubResource("CapsuleShape2D_3inra")
 
 [node name="HitBox" type="Area2D" parent="."]

@@ -10,7 +10,12 @@ var DamageCooldown = false
 
 var direction : Vector2 = Vector2.ZERO
 
-@onready var target = get_parent().get_node("main_character")
+#AI variables
+@export var ShootingMode = false
+@export var ChaseMode = true
+@export var ReloadMode = false
+
+@onready var target = get_parent().get_node("MainCharacter")
 @onready var animation_tree = $AnimationTree 
 
 func _ready():
@@ -26,7 +31,7 @@ func _physics_process(delta):
 
 func movement():
 	if(direction):
-		velocity = direction * SPEED
+		velocity = direction.normalized() * SPEED
 		if(direction.x>0):
 			$Sprite2D.flip_h = false
 		if(direction.x<0):
@@ -36,11 +41,29 @@ func movement():
 	
 	calculateDirection()
 
+#AI Stuff
 func calculateDirection():
-	print(((position - position.direction_to(get_parent().get_node("MainCharacter").position)).length()) > 50)
-	if((position - position.direction_to(get_parent().get_node("MainCharacter").position)).length()) > 50 or true:
-		direction = position.direction_to(get_parent().get_node("MainCharacter").position)
-	else: pass
+	#print(((position - position.direction_to(target.position)).length()) > 50)
+	print((position-target.position).length() )
+	if(ChaseMode):
+		if (position-target.position).length() < 110:
+			direction = Vector2.ZERO
+		elif (position-target.position).length() < 100:
+			direction =  -position.direction_to(target.position)
+		else:
+			direction = position.direction_to(target.position)
+	
+	if(ReloadMode):
+		if (position-target.position).length() < 250:
+			direction =  -position.direction_to(target.position)
+		else:
+			direction = Vector2.ZERO
+	
+	if(ShootingMode):
+		direction = Vector2.ZERO
+
+
+
 
 
 func update_animation_parameters():
