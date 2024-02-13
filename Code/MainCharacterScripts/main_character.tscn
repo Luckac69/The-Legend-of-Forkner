@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cp74323sagayv" path="res://Code/MainCharacterScripts/bow.tscn" id="4_y88s1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lxwc5"]
-radius = 6.0
-height = 18.0
+radius = 30.0
+height = 100.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l5rin"]
 radius = 8.0
@@ -292,7 +292,7 @@ shape = SubResource("CapsuleShape2D_l5rin")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-5.68434e-14, 0)
-scale = Vector2(0.842742, 0.875)
+scale = Vector2(5, 5)
 texture = ExtResource("2_x0pup")
 flip_h = true
 hframes = 10

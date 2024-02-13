@@ -2,14 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://vt6e0dykwru1" path="res://Code/MainCharacterScripts/main_character.tscn" id="1_7cnp5"]
 [ext_resource type="PackedScene" uid="uid://dtolg6hhglcqr" path="res://Code/Bosses/DECA.tscn" id="2_2aldr"]
-[ext_resource type="PackedScene" uid="uid://bqt1yqxol7eo0" path="res://Level.tscn" id="3_hr1wp"]
+[ext_resource type="PackedScene" uid="uid://cmyxkl4itplt6" path="res://Level.tscn" id="3_hr1wp"]
 
 [node name="World" type="Node"]
 
 [node name="MainCharacter" parent="." instance=ExtResource("1_7cnp5")]
+z_index = 2
 position = Vector2(38, 26)
 
 [node name="DecaBase" parent="." instance=ExtResource("2_2aldr")]
-position = Vector2(-144, 374)
+z_index = 1
+position = Vector2(120, 191)
 
 [node name="Node2D" parent="." instance=ExtResource("3_hr1wp")]
+scale = Vector2(5, 5)
