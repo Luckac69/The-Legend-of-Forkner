@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dtolg6hhglcqr"]
+[gd_scene load_steps=47 format=3 uid="uid://dtolg6hhglcqr"]
 
 [ext_resource type="Texture2D" uid="uid://bo2jgn44buo3n" path="res://Sprites/DECA.png" id="1_tnp4d"]
 [ext_resource type="Script" path="res://Code/Bosses/DECA.gd" id="1_vx14w"]
@@ -61,7 +61,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_m1nj7"]
 resource_name = "ShootGun"
 length = 0.7
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -95,6 +94,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_3y53c"]
 resource_name = "reload"
 length = 0.25
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -141,6 +141,28 @@ blend_point_1/pos = Vector2(0, 0.9)
 blend_point_2/node = SubResource("AnimationNodeAnimation_57coe")
 blend_point_2/pos = Vector2(1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_jcsvb")
+blend_point_3/pos = Vector2(0, -0.9)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wqgkc"]
+animation = &"reload"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ui2oj"]
+animation = &"reload"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i0mh1"]
+animation = &"reload"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wf8hq"]
+animation = &"reload"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_fce3l"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_wqgkc")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_ui2oj")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_i0mh1")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_wf8hq")
 blend_point_3/pos = Vector2(0, -0.9)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j45ug"]
@@ -215,12 +237,10 @@ advance_mode = 2
 advance_condition = &"die"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ajlnr"]
-switch_mode = 2
 advance_mode = 2
 advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fxmyq"]
-switch_mode = 2
 advance_mode = 2
 advance_condition = &"is_moving"
 
@@ -228,22 +248,34 @@ advance_condition = &"is_moving"
 advance_mode = 2
 advance_condition = &"idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3y66f"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"reload"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ko36e"]
+advance_mode = 2
+advance_condition = &"reload"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vmtpm"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vrkk1"]
 states/Die/node = SubResource("AnimationNodeAnimation_vkdvw")
-states/Die/position = Vector2(748, 94)
+states/Die/position = Vector2(815, 68)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_gn031")
 states/Idle/position = Vector2(276, 61)
+states/Reload/node = SubResource("AnimationNodeBlendSpace2D_fce3l")
+states/Reload/position = Vector2(262, 201)
 states/Shooting/node = SubResource("AnimationNodeBlendSpace2D_trg0e")
 states/Shooting/position = Vector2(481, 236)
 states/Walking/node = SubResource("AnimationNodeBlendSpace2D_5e8hv")
 states/Walking/position = Vector2(579, 30)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1kqbh"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_ppcbe"), "Idle", "Shooting", SubResource("AnimationNodeStateMachineTransition_y6s28"), "Walking", "Shooting", SubResource("AnimationNodeStateMachineTransition_h6qde"), "Shooting", "Die", SubResource("AnimationNodeStateMachineTransition_qnb46"), "Walking", "Die", SubResource("AnimationNodeStateMachineTransition_w8x6a"), "Idle", "Die", SubResource("AnimationNodeStateMachineTransition_n4jjy"), "Shooting", "Idle", SubResource("AnimationNodeStateMachineTransition_ajlnr"), "Shooting", "Walking", SubResource("AnimationNodeStateMachineTransition_fxmyq"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_2v0g6")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1kqbh"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_ppcbe"), "Idle", "Shooting", SubResource("AnimationNodeStateMachineTransition_y6s28"), "Walking", "Shooting", SubResource("AnimationNodeStateMachineTransition_h6qde"), "Shooting", "Die", SubResource("AnimationNodeStateMachineTransition_qnb46"), "Walking", "Die", SubResource("AnimationNodeStateMachineTransition_w8x6a"), "Idle", "Die", SubResource("AnimationNodeStateMachineTransition_n4jjy"), "Shooting", "Idle", SubResource("AnimationNodeStateMachineTransition_ajlnr"), "Shooting", "Walking", SubResource("AnimationNodeStateMachineTransition_fxmyq"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_2v0g6"), "Shooting", "Reload", SubResource("AnimationNodeStateMachineTransition_3y66f"), "Reload", "Idle", SubResource("AnimationNodeStateMachineTransition_ko36e"), "Reload", "Walking", SubResource("AnimationNodeStateMachineTransition_vmtpm")]
 
 [node name="DecaBase" type="CharacterBody2D"]
 scale = Vector2(5, 5)
 script = ExtResource("1_vx14w")
-ChaseMode = false
-ReloadMode = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.2, 3.2)
@@ -273,8 +305,10 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/die = false
 parameters/conditions/idle = false
 parameters/conditions/is_moving = false
+parameters/conditions/reload = false
 parameters/conditions/shoot = false
 parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Reload/blend_position = Vector2(-0.998908, -0.0132159)
 parameters/Shooting/blend_position = Vector2(0, 0)
 parameters/Walking/blend_position = Vector2(0, 0)
 
@@ -285,7 +319,16 @@ libraries = {
 
 [node name="attack_cooldown" type="Timer" parent="."]
 
+[node name="reload_time" type="Timer" parent="."]
+one_shot = true
+
+[node name="shoot_cooldown" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="body_exited" from="HitBox" to="." method="_on_hit_box_body_exited"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="reload_time" to="." method="_on_reload_time_timeout"]
+[connection signal="timeout" from="shoot_cooldown" to="." method="_on_shoot_cooldown_timeout"]

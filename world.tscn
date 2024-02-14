@@ -8,11 +8,11 @@
 
 [node name="MainCharacter" parent="." instance=ExtResource("1_7cnp5")]
 z_index = 2
-position = Vector2(38, 26)
+position = Vector2(989, 1781)
 
 [node name="DecaBase" parent="." instance=ExtResource("2_2aldr")]
 z_index = 1
-position = Vector2(118, 194)
+position = Vector2(-1326, 1818)
 
 [node name="Node2D" parent="." instance=ExtResource("3_hr1wp")]
 scale = Vector2(5, 5)
