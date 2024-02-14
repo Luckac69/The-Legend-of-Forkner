@@ -140,8 +140,8 @@ theme_override_font_sizes/font_size = 75
 text = "Exit"
 
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/StartContainer/StartButton" to="." method="_on_start_button_button_up"]
-[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/OptionsContainer/OptionsButton" to="." method="_on_study_button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/OptionsContainer/OptionsButton" to="." method="_on_options_button_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/OptionsContainer/OptionsButton" to="." method="_on_study_button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/LoreContainer/LoreButton" to="." method="_on_lore_button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/LoreContainer/LoreButton" to="." method="_on_exit_button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/CreditContainer/CreditButton" to="." method="_on_credit_button_button_up"]
