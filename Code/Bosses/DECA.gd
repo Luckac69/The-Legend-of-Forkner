@@ -6,6 +6,7 @@ const SPEED = 200.0
 var health = 1000
 
 var is_shooting = false
+var is_reloading = false 
 var DamageCooldown = false
 
 var direction : Vector2 = Vector2.ZERO
@@ -45,6 +46,9 @@ func movement():
 func calculateDirection():
 	#print(((position - position.direction_to(target.position)).length()) > 50)
 	#print((position-target.position).length() )
+	
+	
+	##Chasing
 	if(ChaseMode):
 		if (position-target.position).length() < 110:
 			ChaseMode = false
@@ -54,20 +58,32 @@ func calculateDirection():
 		else:
 			direction = position.direction_to(target.position)
 	
-	if(ReloadMode):
-		direction = Vector2.ZERO
-		$reload_time.start()
 	
+	
+	##Reload
+	#if(ReloadMode):
+	#	direction = Vector2.ZERO
+	#	is_reloading = true
+	#	$reload_time.start()
+	
+	
+	
+	##SHOOTING
 	if(ShootingMode):
 		is_shooting = true
 		if (position-target.position).length() < 100:
 			direction =  -position.direction_to(target.position)
-		elif (position-target.position).length() < 5001:
+		elif (position-target.position).length() < 500:
 			direction = Vector2.ZERO
 		else:
 			is_shooting = false
 			ShootingMode = false
 			ChaseMode = true
+		
+		if((position - target.position).x<0):
+			$Sprite2D.flip_h = false
+		if((position - target.position).x>0):
+			$Sprite2D.flip_h = true
 		
 		$shoot_cooldown.start()
 
@@ -75,19 +91,27 @@ func calculateDirection():
 func _on_reload_time_timeout():
 	ReloadMode = false
 	ChaseMode = true
+	is_reloading = false
 
 func _on_shoot_cooldown_timeout():
 	ShootingMode = false
 	is_shooting = false
-	ChaseMode = true
+	ReloadMode = true
+	is_reloading = true
 
 
 func update_animation_parameters():
+	
 	
 	if(health <= 0):
 		animation_tree["parameters/conditions/die"] = true
 	else:
 		animation_tree["parameters/conditions/die"] = false
+	
+	if is_reloading:
+		animation_tree["parameters/conditions/reload"] = true
+	else:
+		animation_tree["parameters/conditions/reload"] = true
 	
 	if(is_shooting):
 		animation_tree["parameters/conditions/shoot"] = true
