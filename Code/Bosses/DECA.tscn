@@ -61,7 +61,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_m1nj7"]
 resource_name = "ShootGun"
 length = 0.7
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -242,8 +241,6 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [node name="DecaBase" type="CharacterBody2D"]
 scale = Vector2(5, 5)
 script = ExtResource("1_vx14w")
-ChaseMode = false
-ReloadMode = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.2, 3.2)
@@ -285,7 +282,16 @@ libraries = {
 
 [node name="attack_cooldown" type="Timer" parent="."]
 
+[node name="reload_time" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="shoot_cooldown" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="body_exited" from="HitBox" to="." method="_on_hit_box_body_exited"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="reload_time" to="." method="_on_reload_time_timeout"]
+[connection signal="timeout" from="shoot_cooldown" to="." method="_on_shoot_cooldown_timeout"]

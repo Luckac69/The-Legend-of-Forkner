@@ -44,26 +44,42 @@ func movement():
 #AI Stuff
 func calculateDirection():
 	#print(((position - position.direction_to(target.position)).length()) > 50)
-	print((position-target.position).length() )
+	#print((position-target.position).length() )
 	if(ChaseMode):
 		if (position-target.position).length() < 110:
-			direction = Vector2.ZERO
+			ChaseMode = false
+			ShootingMode = true
 		elif (position-target.position).length() < 100:
 			direction =  -position.direction_to(target.position)
 		else:
 			direction = position.direction_to(target.position)
 	
 	if(ReloadMode):
-		if (position-target.position).length() < 250:
-			direction =  -position.direction_to(target.position)
-		else:
-			direction = Vector2.ZERO
+		direction = Vector2.ZERO
+		$reload_time.start()
 	
 	if(ShootingMode):
-		direction = Vector2.ZERO
+		is_shooting = true
+		if (position-target.position).length() < 100:
+			direction =  -position.direction_to(target.position)
+		elif (position-target.position).length() < 5001:
+			direction = Vector2.ZERO
+		else:
+			is_shooting = false
+			ShootingMode = false
+			ChaseMode = true
+		
+		$shoot_cooldown.start()
 
 
+func _on_reload_time_timeout():
+	ReloadMode = false
+	ChaseMode = true
 
+func _on_shoot_cooldown_timeout():
+	ShootingMode = false
+	is_shooting = false
+	ChaseMode = true
 
 
 func update_animation_parameters():
@@ -115,11 +131,3 @@ func _on_attack_cooldown_timeout():
 
 func enemy():
 	pass
-
-
-
-
-
-
-
-
