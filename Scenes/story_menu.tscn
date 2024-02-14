@@ -1,18 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://v5sojoe1jp7j"]
+[gd_scene load_steps=3 format=3 uid="uid://6ndd0hklpmpb"]
 
 [ext_resource type="Script" path="res://Scenes/credits_menu.gd" id="1_yj6fx"]
 [ext_resource type="FontFile" uid="uid://ewapdr1gqw01" path="res://PreFabs/ThaleahFat.ttf" id="2_nlali"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exq8q"]
-bg_color = Color(0.101961, 0.0862745, 0.145098, 0.392157)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gtaq"]
-bg_color = Color(0, 0, 0, 0.509804)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_geb0q"]
-bg_color = Color(0, 0, 0, 0.784314)
-
-[node name="OptionsMenu" type="Control"]
+[node name="LoreMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,7 +73,7 @@ Will YOU triumph where others have fallen? Destiny calls a novice explorer to na
  darkness holds the truths...now claim your legend!"
 horizontal_alignment = 1
 
-[node name="ExitGameContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="BackButtonContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/margin_left = 200
@@ -90,17 +81,11 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 10
 
-[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/ExitGameContainer"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/BackButtonContainer"]
 layout_mode = 2
-focus_mode = 0
-theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("2_nlali")
 theme_override_font_sizes/font_size = 75
-theme_override_styles/normal = SubResource("StyleBoxFlat_exq8q")
-theme_override_styles/hover = SubResource("StyleBoxFlat_6gtaq")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_geb0q")
 text = "BACK
 "
 
-[connection signal="button_down" from="MarginContainer/VBoxContainer/VBoxContainer/ExitGameContainer/ExitButton" to="." method="_on_exit_button_button_down"]
-[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/ExitGameContainer/ExitButton" to="." method="_on_exit_button_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/BackButtonContainer/Button" to="." method="_on_button_button_up"]
