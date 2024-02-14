@@ -133,20 +133,16 @@ theme_override_constants/margin_left = 200
 theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 10
 
-[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/ExitGameContainer"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/ExitGameContainer"]
 layout_mode = 2
-focus_mode = 0
 theme_override_fonts/font = ExtResource("1_f3c22")
 theme_override_font_sizes/font_size = 75
-theme_override_styles/normal = SubResource("StyleBoxFlat_kac25")
-theme_override_styles/hover = SubResource("StyleBoxFlat_m7me2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_xtno7")
-text = "EXIT"
+text = "Exit"
 
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/StartContainer/StartButton" to="." method="_on_start_button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/OptionsContainer/OptionsButton" to="." method="_on_study_button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/OptionsContainer/OptionsButton" to="." method="_on_options_button_button_up"]
-[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/LoreContainer/LoreButton" to="." method="_on_exit_button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/LoreContainer/LoreButton" to="." method="_on_lore_button_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/LoreContainer/LoreButton" to="." method="_on_exit_button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/CreditContainer/CreditButton" to="." method="_on_credit_button_button_up"]
-[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/ExitGameContainer/ExitButton" to="." method="_on_exit_button_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/ExitGameContainer/Button" to="." method="_on_button_button_up"]

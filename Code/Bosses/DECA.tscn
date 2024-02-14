@@ -237,10 +237,12 @@ advance_mode = 2
 advance_condition = &"die"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ajlnr"]
+switch_mode = 2
 advance_mode = 2
 advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fxmyq"]
+switch_mode = 2
 advance_mode = 2
 advance_condition = &"is_moving"
 

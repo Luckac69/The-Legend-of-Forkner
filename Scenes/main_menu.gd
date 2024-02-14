@@ -12,5 +12,11 @@ func _on_lore_button_button_up():
 func _on_credit_button_button_up():
 	get_tree().change_scene_to_file("res://Scenes/credits_menu.tscn")
 
-func _on_exit_button_button_up():
+
+
+
+
+
+#exit
+func _on_button_button_up():
 	get_tree().quit()
