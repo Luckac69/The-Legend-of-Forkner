@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://v5sojoe1jp7j"]
+
+[ext_resource type="Script" path="res://Scenes/credits_menu.gd" id="1_yj6fx"]
+[ext_resource type="FontFile" uid="uid://ewapdr1gqw01" path="res://PreFabs/ThaleahFat.ttf" id="2_nlali"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exq8q"]
+bg_color = Color(0.101961, 0.0862745, 0.145098, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gtaq"]
+bg_color = Color(0, 0, 0, 0.509804)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_geb0q"]
+bg_color = Color(0, 0, 0, 0.784314)
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yj6fx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.32549, 0.219608, 0.25098, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 88.8
+theme_override_colors/font_color = Color(0.564706, 0.407843, 0.454902, 1)
+theme_override_colors/font_shadow_color = Color(0.141176, 0.0705882, 0.054902, 1)
+theme_override_constants/shadow_offset_x = 14
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("2_nlali")
+theme_override_font_sizes/font_size = 115
+text = "The Legend 
+of forkner"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+alignment = 1
+
+[node name="StartContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/StartContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_nlali")
+theme_override_font_sizes/font_size = 22
+text = "Long ago, the famed exploring brothers Forkner and Peter quested for treasure. But greed corrupted
+their quest and a dispute over spoils spurred a vicious battle, leaving Peter broken in the ruins.
+Though triumphant, Forkner emerged victorious, but guilt and regret still haunted him.
+Decades later, he returned seeking redemption - to recover Peter’s remains for an honorable burial.
+But after enduring relentless foes, the aging Forkner met his end against a merciless mechanical guardian.
+30 years passed. Legends of Forkner’s exploits endure, though he died unforgotten. The legend of Peter,
+scarcely a whisper remains. Their fateful dungeon still guards secrets and peril that can immortalize,
+or claim, new bold adventurers. 
+
+Will YOU triumph where others have fallen? Destiny calls a novice explorer to navigate
+ depths from which none have returned. Redemption, fortune, death - or destiny? The
+ darkness holds the truths...now claim your legend!"
+horizontal_alignment = 1
+
+[node name="ExitGameContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 10
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/ExitGameContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_nlali")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_exq8q")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6gtaq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_geb0q")
+text = "BACK
+"
+
+[connection signal="button_down" from="MarginContainer/VBoxContainer/VBoxContainer/ExitGameContainer/ExitButton" to="." method="_on_exit_button_button_down"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/ExitGameContainer/ExitButton" to="." method="_on_exit_button_button_up"]

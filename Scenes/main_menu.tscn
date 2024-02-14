@@ -92,6 +92,22 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_xtno7")
 text = "Options
 "
 
+[node name="LoreContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 10
+
+[node name="LoreButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/LoreContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_f3c22")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_kac25")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m7me2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xtno7")
+text = "Lore"
+
 [node name="CreditContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -128,7 +144,9 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_xtno7")
 text = "EXIT"
 
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/StartContainer/StartButton" to="." method="_on_start_button_button_up"]
-[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/OptionsContainer/OptionsButton" to="." method="_on_options_button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/OptionsContainer/OptionsButton" to="." method="_on_study_button_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/OptionsContainer/OptionsButton" to="." method="_on_options_button_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/LoreContainer/LoreButton" to="." method="_on_exit_button_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/LoreContainer/LoreButton" to="." method="_on_lore_button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/CreditContainer/CreditButton" to="." method="_on_credit_button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/ExitGameContainer/ExitButton" to="." method="_on_exit_button_button_up"]
