@@ -128,7 +128,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_xtno7")
 text = "EXIT"
 
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/StartContainer/StartButton" to="." method="_on_start_button_button_up"]
-[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/OptionsContainer/OptionsButton" to="." method="_on_study_button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/OptionsContainer/OptionsButton" to="." method="_on_options_button_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/OptionsContainer/OptionsButton" to="." method="_on_study_button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/CreditContainer/CreditButton" to="." method="_on_credit_button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/ExitGameContainer/ExitButton" to="." method="_on_exit_button_button_up"]
